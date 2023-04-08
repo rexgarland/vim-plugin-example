@@ -1,0 +1,19 @@
+" init.vim
+
+python <<EOF
+
+import sys
+sys.path.insert(0,'/Users/rex/personal/editor/scripts')
+
+import vim
+from my_vim_scripts import order_attrs
+
+def organize_tag():
+    vim.command('normal "aya<')
+    tag = vim.eval("@a")
+    new_tag = order_attrs(tag)
+    vim.command(f'normal ca<{new_tag}')
+
+EOF
+
+nmap gt :python organize_tag()<cr>
